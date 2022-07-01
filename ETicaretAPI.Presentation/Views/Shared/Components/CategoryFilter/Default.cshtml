@@ -1,0 +1,11 @@
+﻿@model List<CategoryOption>
+
+@foreach (var item in Model)
+{
+    <div class="sidebar_widget filterBox filter-widget">
+        <div class="widget-title"><h2>@item.Option.Name</h2></div>
+        <ul>
+           @await Component.InvokeAsync("OptionValues",@item.OptionId)
+        </ul>
+    </div>
+}

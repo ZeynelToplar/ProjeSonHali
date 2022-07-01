@@ -1,0 +1,65 @@
+﻿@model List<Favorite>
+@{
+    ViewData["Title"] = "Favs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Sepetiniz</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
+                <form action="#" method="post" class="cart style2">
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-center">Ürün</th>
+                                <th class="text-center">Fiyat</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        @await Component.InvokeAsync("Image",@item.ProductId)
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">
+                                                @{
+                                                    string productName = @item.Product.ProductName.Substring(0, 30);
+                                                }@productName...
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">@String.Format("{0:C2}",@item.Product.UnitPrice)</span>
+                                    </td>
+                                    <td class="text-center small--hide"><a href="~/Fav/DeleteFav/@item.FavoriteId" class="btn btn--secondary cart__remove" title="İstek Listemden Kaldır"><i class="icon icon anm anm-times-l"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-left"><a href="~/Home/Index" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> Alışverişe devam et</a></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <hr />
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,114 @@
+﻿@model List<Basket>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    double subTotal = 0;
+}
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">Sepetiniz</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 main-col">
+                <form action="#" method="post" class="cart style2">
+                    <table>
+                        <thead class="cart__row cart__header">
+                            <tr>
+                                <th colspan="2" class="text-center">Ürün</th>
+                                <th class="text-center">Fiyat</th>
+                                <th class="text-center">Adet</th>
+                                <th class="text-right">Toplam</th>
+                                <th class="action">&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="cart__row border-bottom line1 cart-flex border-top">
+                                    <td class="cart__image-wrapper cart-flex-item">
+                                        @await Component.InvokeAsync("Image",@item.ProductId)
+                                    </td>
+                                    <td class="cart__meta small--text-left cart-flex-item">
+                                        <div class="list-view-item__title">
+                                            <a href="#">
+                                                @{
+                                                    string productName = @item.Product.ProductName.Substring(0, 30);
+                                                }@productName...
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price-wrapper cart-flex-item">
+                                        <span class="money">@String.Format("{0:C2}",@item.UnitPrice)</span>
+                                    </td>
+                                    <td class="cart__update-wrapper cart-flex-item text-right">
+                                        <div class="cart__qty text-center">
+                                            <div class="qtyField">
+                                                <a class="qtyBtn minus" href="javascript:void(0);"><i class="icon icon-minus"></i></a>
+                                                <input class="cart__qty-input qty" type="text" name="updates[]" id="qty" value="@item.Quantity" pattern="[0-9]*">
+                                                <a class="qtyBtn plus" href="javascript:void(0);"><i class="icon icon-plus"></i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-right small--hide cart-price">
+                                        <div>
+                                            <span class="money">
+                                                @{
+                                                    var total = @item.UnitPrice * @item.Quantity;
+                                                    subTotal += total;
+                                                }
+                                                @String.Format("{0:C2}",@total)
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center small--hide"><a href="~/Basket/RemoveBasket/@item.BasketId" class="btn btn--secondary cart__remove" title="Sepetten Kaldır"><i class="icon icon anm anm-times-l"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-left"><a href="~/Home/Index" class="btn--link cart-continue"><i class="icon icon-arrow-circle-left"></i> Alışverişe devam et</a></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <hr />
+                </form>
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4 cart__footer">
+                <div class="cart-note">
+                    <div class="solid-border">
+                        <h5><label for="CartSpecialInstructions" class="cart-note__label small--text-center">Siparişine not ekleyiniz</label></h5>
+                        <textarea name="note" id="CartSpecialInstructions" class="cart-note__input"></textarea>
+                    </div>
+                </div>
+                <div class="solid-border">
+                    <div class="row">
+                        <span class="col-12 col-sm-6 cart__subtotal-title"><strong>Ara Toplam</strong></span>
+                        <span class="col-12 col-sm-6 cart__subtotal-title cart__subtotal text-right"><span class="money">@String.Format("{0:C2}",@subTotal)</span></span>
+                    </div>
+                    <div class="cart__shipping">Ödeme sırasında hesaplanan kargo ve vergiler.</div>
+                    <p class="cart_tearm">
+                        <label>
+                            <input type="checkbox" name="tearm" id="cartTearm" class="checkbox" value="tearm" required="">
+                            Şartları ve Koşulları kabul ediyorum.
+                        </label>
+                    </p>
+                    @*<input type="submit" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout" value="Ödeme İşlemine Git" disabled="disabled">*@
+                    <a href="~/Payment/Index/" name="checkout" id="cartCheckout" class="btn btn--small-wide checkout">Ödeme İşlemine Git</a>
+                    @*<div class="paymnet-img"><img src="~/UI/assets/images/payment-img.jpg" alt="Ode"></div>*@
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->

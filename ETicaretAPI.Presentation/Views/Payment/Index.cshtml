@@ -1,0 +1,235 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--Body Content-->
+<div id="page-content">
+    <!--Page Title-->
+    <div class="page section-header text-center">
+        <div class="page-title">
+            <div class="wrapper"><h1 class="page-width">ÖDEME SAYFASI</h1></div>
+        </div>
+    </div>
+    <!--End Page Title-->
+
+    <div class="container">
+        <div class="row">
+           @* <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                <div class="customer-box returning-customer">
+                    <h3><i class="icon anm anm-user-al"></i> Tekrar Aramıza Hoşgeldin - <a href="#customer-login" id="customer" class="text-white text-decoration-underline" data-toggle="collapse">Giriş Yap</a></h3>
+                    <div id="customer-login" class="collapse customer-content">
+                        <div class="customer-info">
+                            <form>
+                                <div class="row">
+                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <label for="exampleInputEmail1">Mail Adresiniz <span class="required-f">*</span></label>
+                                        <input type="email" class="no-margin" id="exampleInputEmail1" required>
+                                    </div>
+                                    <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                        <label for="exampleInputPassword1">Şifreniz <span class="required-f">*</span></label>
+                                        <input type="password" id="exampleInputPassword1" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-check width-100 margin-20px-bottom">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" value=""> Beni Hatırla!
+                                            </label>
+                                            <a href="#" class="float-right">Şifremi Unuttum?</a>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary mt-3">Giriş Yap</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            @*<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                <div class="customer-box customer-coupon">
+                    <h3 class="font-15 xs-font-13"><i class="icon anm anm-gift-l"></i> Kodun Var Mı? <a href="#have-coupon" class="text-white text-decoration-underline" data-toggle="collapse">Kodu Giriniz</a></h3>
+                    <div id="have-coupon" class="collapse coupon-checkout-content">
+                        <div class="discount-coupon">
+                            <div id="coupon" class="coupon-dec tab-pane active">
+                                <label class="required get" for="coupon-code"><span class="required-f">*</span> Kod</label>
+                                <input id="coupon-code" required="" type="text" class="mb-3">
+                                <button class="coupon-btn btn" type="submit">Kodu aktif et</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </div>
+        <form asp-action="Pay"  asp-controller="Payment">
+            <div class="row billing-fields">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                    <div class="create-ac-content bg-light-gray padding-20px-all">
+
+                        <fieldset>
+                            <h2 class="login-title mb-3">Fatura Detayı</h2>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-firstname">Ad <span class="required-f">*</span></label>
+                                    <input name="firstname" value="" id="input-firstname" type="text" required>
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-lastname">Soyad <span class="required-f">*</span></label>
+                                    <input name="lastname" value="" id="input-lastname" type="text" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-email">Mail <span class="required-f">*</span></label>
+                                    <input name="email" value="" id="input-email" type="email" required>
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-telephone">Telefon <span class="required-f">*</span></label>
+                                    <input name="telephone" value="" id="input-telephone" type="tel" required>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                    <label for="input-company">Şirket</label>
+                                    <input name="company" value="" id="input-company" type="text">
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-address-1">Adres <span class="required-f">*</span></label>
+                                    <input asp-for="ShipAddress" value="" id="input-address-1" type="text" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6">
+                                    <label for="input-address-2">Apartman <span class="required-f">*</span></label>
+                                    <input name="address_2" value="" id="input-address-2" type="text" required>
+                                </div>
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-city">Şehir <span class="required-f">*</span></label>
+                                    <input name="city" value="" id="input-city" type="text" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                    <label for="input-postcode">Posta Kodu <span class="required-f">*</span></label>
+                                    <input name="postcode" value="" id="input-postcode" type="text" required>
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group form-check col-md-12 col-lg-12 col-xl-12">
+                                    <label class="form-check-label padding-15px-left">
+                                        <input type="checkbox" class="form-check-input" value=""><strong>Üyeliğin var mı?</strong>
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="form-group col-md-12 col-lg-12 col-xl-12">
+                                    <label for="input-company">Sipariş Notun <span class="required-f">*</span></label>
+                                    <textarea class="form-control resize-both" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    <div class="your-order-payment">
+                        <div class="your-order">
+                            <h2 class="order-title mb-4">Siparişiniz</h2>
+
+                            <div class="table-responsive-sm order-table">
+                                <table class="bg-white table table-bordered table-hover text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left">Ürün Adı</th>
+                                            <th>Fiyatı</th>
+                                            <th>Adet</th>
+                                            <th>Ara Toplam</th>
+                                        </tr>
+                                    </thead>
+                                    @await Component.InvokeAsync("BasketInfo")
+                                </table>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="your-payment">
+                            <h2 class="payment-title mb-3">Ödeme Tipi</h2>
+                            <div class="payment-method">
+                                <div class="payment-accordion">
+                                    <div id="accordion" class="payment-section">
+                                        <div class="card mb-2">
+                                            <div class="card-header">
+                                                <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour"> Kart Bilgileriniz </a>
+                                            </div>
+                                            <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                                <div class="card-body">
+                                                    <fieldset>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cardname">Kart üstündeki isim <span class="required-f">*</span></label>
+                                                                <input name="cardname" value="" placeholder="Kart Adı" id="input-cardname" class="form-control" type="text" required>
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-country">Kredi Kartı Tipi <span class="required-f">*</span></label>
+                                                                <select name="country_id" class="form-control">
+                                                                    <option value=""> --- Lütfen Seçiniz --- </option>
+                                                                    <option value="1">Paycell</option>
+                                                                    <option value="2">Visa Card</option>
+                                                                    <option value="3">Master Card</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cardno">Kart Numarası  <span class="required-f">*</span></label>
+                                                                <input name="cardno" value="" placeholder="Kart Numarası" id="input-cardno" class="form-control" type="text" required>
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label for="input-cvv">CVV <span class="required-f">*</span></label>
+                                                                <input name="cvv" value="" placeholder="CVV" id="input-cvv" class="form-control" type="text" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <label>Son Kullanım Tarihi <span class="required-f">*</span></label>
+                                                                <input type="date" name="exdate" class="form-control" required>
+                                                            </div>
+                                                            <div class="form-group col-md-6 col-lg-6 col-xl-6 required">
+                                                                <img class="padding-25px-top xs-padding-5px-top" src="~/UI/assets/images/payment-img.jpg" alt="card" title="card" />
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="order-button-payment">
+                                    <button class="btn" value="Ödemeyi gerçekleştir" type="submit">Ödemeyi Gerçekleştir</button>
+                                </div>
+        </form>
+    </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->

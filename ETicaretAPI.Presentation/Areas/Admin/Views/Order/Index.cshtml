@@ -1,0 +1,109 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+@model IPagedList<Order>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+@*<div class="container">
+    <div class="row mb-2">
+    <div class="col-md-10">
+    <h2>Ürünler</h2>
+    </div>
+    <div class="col-md-2">
+    <a class="btn btn-info" asp-action="AddProduct" asp-controller="Product" asp-area="admin">Yeni Ürün</a>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <table class="table table-bordered">
+    <thead>
+    <tr>
+    <td>#</td>
+    <td>Kategori</td>
+    <td>Marka</td>
+    <td>Ürün Adı</td>
+    <td>Stok Adedi</td>
+    <td>Birim Fiyatı</td>
+    <td>İndirim Oranı(%)</td>
+    <td>Düzenle</td>
+    <td>Pasif</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+    <td>@item.ProductId</td>
+    <td>@item.CategoryId</td>
+    <td>@item.BrandId </td>
+    <td>@item.ProductName</td>
+    <td>@item.UnitsInStock</td>
+    <td>@item.UnitPrice</td>
+    <td>@item.Discount</td>
+    <td><a class="btn btn-dribbble" href="~/Admin/Product/UpdateProduct/@item.ProductId">Düzenle</a></td>
+    <td><label class="btn btn-danger">Pasif Yap</label></td>
+    </tr>
+    }
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>*@
+<br />
+<br />
+<div class="row mb-2">
+    <div class="col-md-10">
+        <h2>Siparişler</h2>
+    </div>
+</div>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Müşteri Adı</td>
+            <td>Ödeme Tipi</td>
+            <td>Sipariş Durumu</td>
+            <td>Ödeme Durumu</td>
+            <td>Sipariş Adresi</td>
+            <td>Fatura Adresi</td>
+            <td>Sipariş Tarihi</td>
+            <td>Sipariş Detayı</td>
+            <td>Onayla</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.Customer.Name @item.Customer.Surname</td>
+                <td><label class="badge badge-success"> @item.Payment.PaymentType</label></td>
+                <td><label class="badge badge-success"> @item.OrderStatus.OrderStatusName</label></td>
+                <td><label class="badge badge-success"> @item.PaymentStatus</label></td>
+                <td>
+                    @item.ShipAddress
+                </td>
+                <td>
+                    @item.InvoiceAddress
+                </td>
+                <td> <label class="badge badge-success"> @item.OrderDate </label></td>
+                <td><a class="btn btn-dribbble" href="~/Admin/Order/OrderDetails/@item.OrderId">Sipariş Detayları</a></td>
+                @if (item.OrderStatusId == 2)
+                {
+                    <td><label class="btn btn-dark">Onaylandı</label></td>
+                }
+                else
+                {
+                    <td><a class="btn btn-danger" href="~/Admin/Order/ConfirmOrder/@item.OrderId">Onayla</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)

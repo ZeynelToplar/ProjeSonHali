@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretAPI.Entities", "ETicaretAPI.Entities\ETicaretAPI.Entities.csproj", "{1905C66A-ACBD-4C3D-A667-1E45610A5FA3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretAPI.DataAccess", "ETicaretAPI.DataAccess\ETicaretAPI.DataAccess.csproj", "{FE1F9ECE-93AD-444B-90EB-5C1EE5DAB4A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretAPI.Business", "ETicaretAPI.Business\ETicaretAPI.Business.csproj", "{F39CFF53-69EF-4700-A3B6-35A1D9173D85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaretAPI.Core", "ETicaretAPI.Core\ETicaretAPI.Core.csproj", "{C618550F-3CE3-4990-B52F-D36171902CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretAPI.Presentation", "ETicaretAPI.Presentation\ETicaretAPI.Presentation.csproj", "{AA3A961E-0CCC-4A27-BEC2-AF9AD30EEC60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1905C66A-ACBD-4C3D-A667-1E45610A5FA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1905C66A-ACBD-4C3D-A667-1E45610A5FA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1905C66A-ACBD-4C3D-A667-1E45610A5FA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1905C66A-ACBD-4C3D-A667-1E45610A5FA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1F9ECE-93AD-444B-90EB-5C1EE5DAB4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1F9ECE-93AD-444B-90EB-5C1EE5DAB4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1F9ECE-93AD-444B-90EB-5C1EE5DAB4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1F9ECE-93AD-444B-90EB-5C1EE5DAB4A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F39CFF53-69EF-4700-A3B6-35A1D9173D85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F39CFF53-69EF-4700-A3B6-35A1D9173D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F39CFF53-69EF-4700-A3B6-35A1D9173D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F39CFF53-69EF-4700-A3B6-35A1D9173D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C618550F-3CE3-4990-B52F-D36171902CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C618550F-3CE3-4990-B52F-D36171902CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C618550F-3CE3-4990-B52F-D36171902CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C618550F-3CE3-4990-B52F-D36171902CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3A961E-0CCC-4A27-BEC2-AF9AD30EEC60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3A961E-0CCC-4A27-BEC2-AF9AD30EEC60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3A961E-0CCC-4A27-BEC2-AF9AD30EEC60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3A961E-0CCC-4A27-BEC2-AF9AD30EEC60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D483267-CAA4-4EF2-87F9-A465F48A8DB3}
+	EndGlobalSection
+EndGlobal

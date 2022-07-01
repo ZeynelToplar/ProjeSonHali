@@ -1,0 +1,44 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "AddProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+<br />
+<br />
+
+<h1>Ürün Ekleme Sayfası</h1>
+
+<form method="post" asp-action="AddProduct" asp-controller="Product" asp-area="admin">
+    <div class="container">
+        <div class="form-group">
+            <label>Kategori</label>
+            <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control"></select>
+            <br />
+            <label>Marka</label>
+            <select asp-for="BrandId" asp-items="@ViewBag.Brands" class="form-control"></select>
+            <br />
+            <label>Adı</label>
+            <input type="text" asp-for="ProductName" class="form-control" />
+            <br />
+            <label>Açıklaması</label>
+            <input type="text" asp-for="ProductDescription" class="form-control" />
+            <br />
+            <label>Miktar</label>
+            <input type="text" asp-for="Quantity" class="form-control" />
+            <br />
+            <label>Stok Adedi</label>
+            <input type="text" asp-for="UnitsInStock" class="form-control" />
+            <br />
+            <label>Birim Fiyatı</label>
+            <input type="text" asp-for="UnitPrice" class="form-control" />
+            <br />
+            <label>İndirim Oranı(%)</label>
+            <input type="text" asp-for="Discount" class="form-control" />
+            <br />
+            <input class="btn btn-behance" type="submit" value="Ekle" />
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,26 @@
+﻿@model List<Category>
+
+
+@foreach (var item in Model.Where(x => x.ParentId == 0))
+{
+    <li class="lvl1 parent megamenu">
+        <a href="~/Product/Shopping/?categoryId=@item.CategoryId">@item.CategoryName <i class="anm anm-angle-down-l"></i></a>
+        <div class="megamenu style1">
+            <ul class="grid mmWrapper">
+                <li class="grid__item large-up--one-whole">
+                    <ul class="grid">
+                        @foreach (var subItem in Model.Where(x => x.ParentId == item.CategoryId))
+                        {
+                            <li class="grid__item lvl-1 col-md-3">
+                                <a href="~/Product/Shopping/?subCategoryId=@subItem.CategoryId" class="site-nav lvl-1">@subItem.CategoryName</a>
+                                <ul class="subLinks">
+                                    @await Component.InvokeAsync("BrandList",new { id = subItem.CategoryId})
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </li>
+}

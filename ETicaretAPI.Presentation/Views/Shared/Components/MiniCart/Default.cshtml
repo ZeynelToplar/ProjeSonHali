@@ -1,0 +1,63 @@
+﻿@model List<Basket>
+@{
+    double price = 0, subTotal = 0;
+}
+<div class="col-4 col-sm-3 col-md-3 col-lg-2">
+    <div class="site-cart">
+        <a href="#;" class="site-header__cart" title="Cart">
+            <i class="icon anm anm-bag-l"></i>
+            <span id="CartCount" class="site-header__cart-count" data-cart-render="item_count">@Model.Count</span>
+        </a>
+        <!--Minicart Popup-->
+        <div id="header-cart" class="block block-cart">
+            <ul class="mini-products-list">
+                @foreach (var item in Model)
+                {
+                    <li class="item">
+                        <a class="product-image" href="#">
+                            @await Component.InvokeAsync("Image",@item.ProductId)
+                        </a>
+                        <div class="product-details">
+                            <a href="#" class="remove"><i class="anm anm-times-l" aria-hidden="true"></i></a>
+                            <a href="#" class="edit-i remove"><i class="anm anm-edit" aria-hidden="true"></i></a>
+                            <a class="pName" href="cart.html">@item.Product.ProductName</a>
+                            <div class="wrapQtyBtn">
+                                <div class="qtyField">
+                                    <span class="label">Adet:</span>
+                                    <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                    <input type="text" id="Quantity" name="quantity" value="@item.Quantity" class="product-form__input qty">
+                                    <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="priceRow">
+                                <div class="product-price">
+                                    @{
+                                        price = item.Quantity * item.UnitPrice;
+                                        subTotal += price;
+                                    }
+                                    <span class="money">@String.Format("{0:C2}",@price) </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="total">
+                <div class="total-in">
+                    <span class="label">Sepet Ara Toplam:</span><span class="product-price"><span class="money">@String.Format("{0:C2}",@subTotal)</span></span>
+                </div>
+                <div class="buttonSet text-center">
+                    <a href="~/Basket/Index/@Context.Session.GetInt32("id")" class="btn btn-secondary btn--small">Sepete Git</a>
+                    <a href="~/Payment/Index/" class="btn btn-secondary btn--small">Ödeme</a>
+                </div>
+            </div>
+        </div>
+        <!--End Minicart Popup-->
+    </div>
+    <!--Mobile Search-->
+    <div class="site-header__search d-block d-lg-none">
+        <button type="button" class="search-trigger"><i class="icon anm anm-search-l"></i></button>
+    </div>
+    <!--End Mobile Search-->
+</div>
+

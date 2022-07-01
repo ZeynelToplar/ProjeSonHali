@@ -1,0 +1,51 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+@model IPagedList<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@{
+    string durum;
+}
+<hr />
+<br />
+<br />
+<div class="row">
+    <div class="col-md-10">
+        <h2>Kategoriler</h2>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-info" href="~/admin/category/addcategory">Yeni Kategori</a>
+    </div>
+</div>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>Kategori ID</td>
+            <td>Kategori Adı</td>
+            <td>Kategori Açıklaması</td>
+            <td>Durum</td>
+            <td>Düzenle</td>
+            <td>Pasif Yap</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td>@item.CategoryDescription</td>
+                <td><label class="badge badge-success">@if(item.CategoryStatus) { durum = "Aktif"; } else{ durum = "Pasif"; } @durum</label></td>
+                <td><a class="btn btn-dribbble" href="~/admin/category/updatecategory/@item.CategoryId">Düzenle</a></td>
+                <td><label class="btn btn-danger">Pasif Yap</label></td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+
+
+

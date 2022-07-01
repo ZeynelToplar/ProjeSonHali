@@ -1,0 +1,10 @@
+﻿@model List<Image>
+
+
+@foreach (var item in Model)
+{
+<img class="primary blur-up lazyload" src="@item.ImagePath"  alt="image" title="product">
+<!-- End image -->
+<!-- Hover image -->
+<img class="hover blur-up lazyload" src="@item.ImagePath" alt="image" title="product">
+}

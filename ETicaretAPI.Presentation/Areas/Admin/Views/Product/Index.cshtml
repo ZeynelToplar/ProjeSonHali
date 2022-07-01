@@ -1,0 +1,103 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+@model IPagedList<Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+@*<div class="container">
+    <div class="row mb-2">
+    <div class="col-md-10">
+    <h2>Ürünler</h2>
+    </div>
+    <div class="col-md-2">
+    <a class="btn btn-info" asp-action="AddProduct" asp-controller="Product" asp-area="admin">Yeni Ürün</a>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-2">
+    <table class="table table-bordered">
+    <thead>
+    <tr>
+    <td>#</td>
+    <td>Kategori</td>
+    <td>Marka</td>
+    <td>Ürün Adı</td>
+    <td>Stok Adedi</td>
+    <td>Birim Fiyatı</td>
+    <td>İndirim Oranı(%)</td>
+    <td>Düzenle</td>
+    <td>Pasif</td>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+    <tr>
+    <td>@item.ProductId</td>
+    <td>@item.CategoryId</td>
+    <td>@item.BrandId </td>
+    <td>@item.ProductName</td>
+    <td>@item.UnitsInStock</td>
+    <td>@item.UnitPrice</td>
+    <td>@item.Discount</td>
+    <td><a class="btn btn-dribbble" href="~/Admin/Product/UpdateProduct/@item.ProductId">Düzenle</a></td>
+    <td><label class="btn btn-danger">Pasif Yap</label></td>
+    </tr>
+    }
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>*@
+ <br />
+ <br />
+<div class="row mb-2">
+    <div class="col-md-10">
+        <h2>Ürünler</h2>
+    </div>
+    <div class="col-md-2">
+        <a class="btn btn-info" asp-action="AddProduct" asp-controller="Product" asp-area="admin">Yeni Ürün</a>
+    </div>
+</div>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Kategori</td>
+            <td>Marka</td>
+            <td>Ürün Adı</td>
+            <td>Stok Adedi</td>
+            <td>Birim Fiyatı</td>
+            <td>İndirim Oranı(%)</td>
+            <td>Düzenle</td>
+            <td>Sil</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.Category.CategoryName</td>
+                <td>@item.Brand.BrandName </td>
+                <td>
+                    @{
+                        string productName = @item.ProductName.Substring(0, 15);
+                    } @productName...
+                </td>
+                <td>@item.UnitsInStock</td>
+                <td>@String.Format("{0:C2}",@item.UnitPrice)</td>
+                <td>@item.Discount</td>
+                <td><a class="btn btn-dribbble" href="~/Admin/Product/UpdateProduct/@item.ProductId">Düzenle</a></td>
+                <td><a class="btn btn-danger" href="~/Admin/Product/DeleteProduct/@item.ProductId">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)

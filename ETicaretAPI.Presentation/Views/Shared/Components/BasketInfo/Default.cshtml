@@ -1,0 +1,51 @@
+﻿@model List<Basket>
+@{
+    double overall = 0;
+}
+<tbody>
+    @foreach (var item in Model)
+    {
+        var subTotal = item.UnitPrice * item.Quantity;
+        overall += subTotal;
+
+        <tr>
+            <td class="text-left">@item.Product.ProductName</td>
+            <td>@String.Format("{0:C2}",@item.UnitPrice)</td>
+            <td>@item.Quantity</td>
+            <td>@String.Format("{0:C2}",subTotal)</td>
+
+        </tr>
+    }
+</tbody>
+<tfoot class="font-weight-600">
+    @if (overall < 250)
+    {
+        
+        <tr>
+            <td colspan="4" class="text-right">Kargo Ücreti </td>
+            <td>10.00₺</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="text-right">Toplam</td>
+            <td>@String.Format("{0:C2}",@overall)</td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" class="text-right">Ücretsiz Kargo </td>
+        </tr>
+        @if (overall > 5000)
+        {
+            <tr>
+                <td colspan="4" class="text-right">Toplam</td>
+                <td><span style="text-decoration:line-through;">@String.Format("{0:C2}",@overall)</span></td>
+                @{
+                    overall = overall - (overall * 15 / 100);
+                }
+                <td><span class="price">@String.Format("{0:C2}",@overall)</span></td>
+            </tr>
+            
+        }
+    }
+</tfoot>

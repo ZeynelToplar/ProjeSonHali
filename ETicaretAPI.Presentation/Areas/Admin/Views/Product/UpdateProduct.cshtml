@@ -1,0 +1,50 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+<br />
+<br />
+<h1>Ürün Güncelleme Sayfası</h1>
+
+<form method="post" asp-action="UpdateProduct" asp-controller="Product" asp-area="admin">
+    <div class="container">
+        <div class="form-group">
+            <input type="hidden" asp-for="ProductId"/>
+            <label>Kategori</label>
+           <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control"></select>
+            <br />
+            <label>Marka</label>
+            <select asp-for="BrandId" asp-items="@ViewBag.Brands" class="form-control"></select>
+            <br />
+            <label>Adı</label>
+            <input type="text" asp-for="ProductName" class="form-control" />
+            <br />
+            <label>Açıklaması</label>
+            <input type="text" asp-for="ProductDescription" class="form-control" />
+            <br />
+            <label>Miktar</label>
+            <input type="text" asp-for="Quantity" class="form-control" />
+            <br />
+            <label>Stok Adedi</label>
+            <input type="text" asp-for="UnitsInStock" class="form-control" />
+            <br />
+            <label>Birim Fiyatı</label>
+            <input type="text" asp-for="UnitPrice" class="form-control" />
+            <br />
+            <label>İndirim Oranı(%)</label>
+            <input type="text" asp-for="Discount" class="form-control" />
+            <br />
+            <input type="hidden" asp-for="ProductCreatedDate" />
+            <input type="hidden" asp-for="Status" />
+            <input type="submit" value="Güncelle" class="btn btn-info"/>
+            <a href="~/image/addimage/@Model.ProductId" class="btn btn-dark"> Görsel Ekle</a>
+        </div>
+    </div>
+</form>
+
+
+
+

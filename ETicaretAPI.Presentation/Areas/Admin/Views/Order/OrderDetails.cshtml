@@ -1,0 +1,41 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Bootstrap4.Core
+@using X.PagedList.Mvc.Core
+@model IPagedList<OrderDetail>
+@{
+    ViewData["Title"] = "OrderDetails";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+<br />
+<br />
+<div class="row mb-2">
+    <div class="col-md-10">
+        <h2>Sipariş Detayı</h2>
+    </div>
+</div>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <td>#</td>
+            <td>Ürün</td>
+            <td>Adet</td>
+            <td>Fiyat</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.Product.ProductName</td>
+                <td>@item.Quantity</td>
+                <td>@item.UnitPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model,page=>Url.Action("OrderDetails",new {page}),Bootstrap4PagedListRenderOptions.ClassicPlusFirstAndLast)
+

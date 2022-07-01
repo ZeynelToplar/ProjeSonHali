@@ -1,0 +1,403 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "ProductLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    string stokDurum = Model.UnitsInStock > 0 ? "Stokta" : "Stok Kalmadı";
+    double discountPrice, saved;
+    if (Model.Discount > 0)
+    {
+        discountPrice = Model.UnitPrice - (Model.UnitPrice * Model.Discount / 100);
+    }
+    else
+    {
+        discountPrice = Model.UnitPrice;
+    }
+    saved = Model.UnitPrice - discountPrice;
+    var success = ViewBag.success;
+}
+<link rel="stylesheet" href="~/UI/assets/css/style.css">
+<!--Body Content-->
+
+<div id="page-content">
+    <!--MainContent-->
+    <div id="MainContent" class="main-content" role="main">
+        <div id="ProductSection-product-template" class="product-template__container prstyle3 container-fluid">
+            <!--#ProductSection-product-template-->
+            <div class="product-single product-single-1">
+                <div class="left-content-product">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="product-details-img product-single__photos bottom">
+                                <div class="zoompro-wrap product-zoom-right pl-20">
+                                    <div class="zoompro-span" >
+                                        @await Component.InvokeAsync("Image",@Model.ProductId)
+                                    </div>
+                                </div>
+                               @* <div class="product-thumb product-thumb-1">
+                                    <div id="gallery" class="product-dec-slider-1 product-tab-left">
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa.jpg" class="slick-slide slick-cloned" data-slick-index="1" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa2.jpg" class="slick-slide slick-cloned" data-slick-index="2" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa2.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa3.jpg" class="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa3.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa4.jpg" class="slick-slide slick-cloned" data-slick-index="4" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa4.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa5.jpg" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa5.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa5.jpg" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa5.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa5.jpg" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa5.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa5.jpg" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa5.jpg" alt="" />
+                                        </a>
+                                        <a data-image="~/Images/kasa.jpg" data-zoom-image="~/Images/kasa5.jpg" class="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1">
+                                            <img class="blur-up lazyload" src="~/Images/kasa5.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="lightboximages">
+                                    <a href="~/Images/kasa.jpg" data-size="1462x2048"></a>
+                                    <a href="~/Images/kasa2.jpg" data-size="1462x2048"></a>
+                                    <a href="~/Images/kasa3.jpg" data-size="1462x2048"></a>
+                                    <a href="~/Images/kasa4.jpg" data-size="1462x2048"></a>
+                                    <a href="~/Images/kasa5.jpg" data-size="1462x2048"></a>
+                                </div>*@
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                            <div class="product-single__meta">
+                                <h1 class="product-single__title">@Model.ProductName</h1>
+                                <div class="product-nav clearfix">
+                                    <a href="#" class="next" title="Next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="prInfoRow">
+                                    <div class="product-stock"> <span class="instock ">@stokDurum</span> <span class="outstock hide">Erişilebilir</span> </div>
+                                    <div class="product-sku">Barkod: <span class="variant-sku">19115-rdxs</span></div>
+                                </div>
+                                <form method="post" asp-action="AddBasket" asp-controller="Product" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                    <input type="hidden" id="productId" asp-for="ProductId" value="@Model.ProductId" />
+                                    <p class="product-single__price product-single__price-product-template">
+                                        @if (@Model.Discount > 0)
+                                        {
+                                            <span class="visually-hidden">Orijinal Fiyat</span>
+                                            <s id="ComparePrice-product-template"><span class="money">@string.Format("{0:C2}",@Model.UnitPrice)</span></s>
+                                            <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                                <span id="ProductPrice-product-template"><span class="money">@string.Format("{0:C2}",@discountPrice)</span></span>
+                                                <input type="hidden" id="unitPrice" asp-for="UnitPrice" value="@discountPrice" />
+                                            </span>
+                                            <span class="discount-badge">
+                                                <span class="devider">|</span>&nbsp;
+                                                <span>Kazancınız:</span>
+                                                <span id="SaveAmount-product-template" class="product-single__save-amount">
+                                                    <span class="money">@string.Format("{0:C2}",@saved)</span>
+                                                </span>
+                                                <span class="off">(<span>@Model.Discount</span>%)</span>
+                                            </span>
+                                        }
+                                        else
+                                        {
+                                            <span class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
+                                                <span id="ProductPrice-product-template "><span class="money">@string.Format("{0:C2}",@Model.UnitPrice)</span></span>
+                                                <input type="hidden" id="unitprice" asp-for="UnitPrice" value="@Model.UnitPrice" />
+                                            </span>
+                                        }
+                                    </p>
+                                    @if (Model.UnitsInStock < 10)
+                                    {
+                                        <div id="quantity_message">Acele Et! Son  <span class="items">@Model.UnitsInStock</span>  ürün</div>
+                                    }
+                                    <!-- Product Action -->
+                                    <div class="product-action clearfix">
+                                        <div class="product-form__item--quantity">
+                                            <div class="wrapQtyBtn">
+                                                <div class="qtyField">
+                                                    <a class="qtyBtn minus" href="javascript:void(0);"><i class="fa anm anm-minus-r" aria-hidden="true"></i></a>
+                                                    <input type="text" id="Quantity" asp-for="Quantity" value="1" class="product-form__input qty">
+                                                    <a class="qtyBtn plus" href="javascript:void(0);"><i class="fa anm anm-plus-r" aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                        @if (Context.Session.GetInt32("id") != null)
+                                        {
+                                            <div class="product-form__item--submit">
+                                                <button type="submit" name="add" id="addBasket" class="btn product-form__cart-submit">
+                                                    <span>SEPETE EKLE</span>
+                                                </button>
+                                                @* <a name="add" href="~/Basket/AddBasket/@Model.ProductId" class="btn product-form__cart-submit">Sepete Ekle</a>*@
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-form__item--submit" title="Sepete eklemek için giriş yapınız.">
+                                               @* <button type="submit" name="add" id="addBasket" class="btn product-form__cart-submit">
+                                                    <span>SEPETE EKLE</span>
+                                                </button>*@
+                                                 <a name="add" href="~/Auth/Login/" class="btn product-form__cart-submit"><span>SEPETE EKLE</span></a>
+                                            </div>
+                                        }
+                                    </div>
+                                    <!-- End Product Action -->
+                                </form>
+                                <div class="display-table shareRow">
+                                    <div class="display-table-cell medium-up--one-third">
+                                        <div class="wishlist-btn">
+                                            <a class="wishlist add-to-wishlist" href="#" title="İstek listeme ekle"><i class="icon anm anm-heart-l" aria-hidden="true"></i> <span>İstek listeme ekle</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-info">
+                                    <p class="product-type"><span class="lbl">Ürün Tipi:</span> <a href="http://annimexweb.com/collections/types?q=Women%27s" title="@Model.Category.CategoryName">@Model.Category.CategoryName</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Product Tabs-->
+                        <div class="template-product">
+                            <div class="tabs-listing">
+                                <ul class="product-tabs">
+                                    <li rel="tab1"><a class="tablink">Ürün Detayları</a></li>
+                                    <li rel="tab2"><a class="tablink">Yorumlar</a></li>
+                                    <li rel="tab4"><a class="tablink">İade &amp; İptal Koşulları</a></li>
+                                </ul>
+                                <div class="tab-container">
+                                    <div id="tab1" class="tab-content">
+                                        <div class="product-description rte">
+                                            <p>
+                                                @Model.ProductDescription
+                                            </p>
+                                            <ul>
+                                                <li><span style="font-weight:bold;">İşlemci Tipi:</span> İntel Core İ7</li>
+                                                <li><span style="font-weight:bold;">İşlemci:</span> 10750H</li>
+                                                <li><span style="font-weight:bold;">Ekran Kartı:</span> Nvidia GeForce GTX1650 Ti</li>
+                                                <li><span style="font-weight:bold;">RAM:</span> 16 GB</li>
+                                                <li><span style="font-weight:bold;">Ekran Boyutu(inç):</span> 17,3 inç</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab2" class="tab-content">
+                                        <div id="shopify-product-reviews">
+                                            <div class="spr-container">
+                                                <div class="spr-header clearfix">
+                                                    <div class="spr-summary">
+                                                        <span class="spr-summary-actions">
+                                                            <a href="#" class="spr-summary-actions-newreview btn">Bir Yorum Bırak</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="spr-content">
+                                                    <div class="spr-form clearfix">
+                                                        <form method="post" action="#" id="new-review-form" class="new-review-form">
+                                                            <h3 class="spr-form-title">İlk yorum yazan sen ol</h3>
+                                                            <fieldset class="spr-form-contact">
+                                                                <div class="spr-form-contact-name">
+                                                                    <label class="spr-form-label" for="review_author_10508262282">Ad</label>
+                                                                    <input class="spr-form-input spr-form-input-text " id="review_author_10508262282" type="text" name="review[author]" value="" placeholder="Adınızı giriniz...">
+                                                                </div>
+                                                                <div class="spr-form-contact-email">
+                                                                    <label class="spr-form-label" for="review_email_10508262282">Mail</label>
+                                                                    <input class="spr-form-input spr-form-input-email " id="review_email_10508262282" type="email" name="review[email]" value="" placeholder="teamsolid@gmail.com">
+                                                                </div>
+                                                            </fieldset>
+                                                            <fieldset class="spr-form-review">
+                                                                <div class="spr-form-review-title">
+                                                                    <label class="spr-form-label" for="review_title_10508262282">Başlık</label>
+                                                                    <input class="spr-form-input spr-form-input-text " id="review_title_10508262282" type="text" name="review[title]" value="" placeholder="Yorumunuza başlık verin...">
+                                                                </div>
+
+                                                                <div class="spr-form-review-body">
+                                                                    <label class="spr-form-label" for="review_body_10508262282">Yorumunuz <span class="spr-form-review-body-charactersremaining">(1500)</span></label>
+                                                                    <div class="spr-form-input">
+                                                                        <textarea class="spr-form-input spr-form-input-textarea " id="review_body_10508262282" data-product-id="10508262282" name="review[body]" rows="10" placeholder="Yorumunuz..."></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                            <fieldset class="spr-form-actions">
+                                                                <input type="submit" class="spr-button spr-button-primary button button-primary btn btn-primary" value="Yorum Ekle">
+                                                            </fieldset>
+                                                        </form>
+                                                    </div>
+                                                    <div class="spr-reviews">
+                                                        <div class="spr-review">
+                                                            <div class="spr-review-header">
+                                                                <span class="product-review spr-starratings spr-review-header-starratings"><span class="reviewLink"><i class="fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i></span></span>
+                                                                <h3 class="spr-review-header-title">Ürün Ve Kargo Harika</h3>
+                                                                <span class="spr-review-header-byline"><strong>Hüseyin</strong> <strong>Nis 08, 2022</strong></span>
+                                                            </div>
+                                                            <div class="spr-review-content">
+                                                                <p class="spr-review-content-body">Ürün beklediğimden daha güzel çıktı. Kargo için ise ayrı memnun kaldım. Çok kısa bir sürede elime ulaştı.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="tab4" class="tab-content">
+                                        <h2>İade işlemlerinizi aşağıdaki şekilde yapmalısınız:</h2>
+                                        <ul>
+                                            <li>Ürünlerinizi teslim aldığınız tarihten itibaren 14 gün içerisinde ücretsiz ve kolayca iade edebilirsiniz. "Siparişlerim" sayfasından "Kolay iade et" başvurusunda bulunarak iade sürecinizi başlatabilirsiniz.</li>
+                                            <li>"Adresimden ücretsiz teslim alınsın" veya "Kargoya teslim edeceğim" seçeneklerinden birini kullanarak aldığınız kargo koduyla, dilerseniz kapınızdan, dilerseniz kargo şubesine veya Hepsimat teslimat noktalarına bırakarak ürününüzü teslim edebilirsiniz.</li>
+                                            <li>Ürünü iade etmek için tüm aparatlarıyla eksiksiz bir şekilde, orijinal kutusuyla birlikte göndermelisiniz. İadenizin kabul edilmesi için ürünün hasar görmemiş ve kullanılmamış olması gerekmektedir.</li>
+                                        </ul>
+                                        <h2>İade işleminizin durumunu takip etmek için:</h2>
+                                        <ul>
+                                            <li>İade başvurunuzla ilgili detaylı bilgiye "Hesabım > Siparişlerim>Taleplerim" sayfasından ulaşabilirsiniz.</li>
+                                            <li>İade talebinizin güncel durumu SMS ve e-posta yoluyla size bildirilir.</li>
+                                            <span style="font-weight:bold;">Geri ödemeniz</span>iade talebiniz onaylandığında ödeme yönteminize göre yapılır.
+                                        </ul>
+                                        <p>Bu üründen toplu/çoklu sipariş verilmesi, siparişin ticari alım olduğunun tespit edilmesi veya farklı kullanıcı adı, rumuz, kimlik ve iletişim bilgileri ile verilen siparişlerde fatura adresi, teslimat adresi, ödeme bilgisi, ticari unvanı, vergi numarası gibi unsurların aynı olması durumunda Hepsiburada siparişleri iptal etme hakkını saklı tutar.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--End Product Tabs-->
+                    </div>
+                </div>
+                <!--End-product-single-->
+                <!--Product Sidebar-->
+                <div class="prSidebar sidebar-product">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                        <!--Product Feature-->
+                        <div class="prFeatures">
+                            <div class="row">
+                                <div class="feature">
+                                    <img src="~/UI/assets/images/credit-card.png" alt="Güvenli Ödeme" title="Güvenli Ödeme" />
+                                    <div class="details"><h5>Güvenli Ödeme</h5>3D Secure ile güvenli ödeme.</div>
+                                </div>
+                                <div class="feature">
+                                    <img src="~/UI/assets/images/shield.png" alt="Koruma" title="Koruma" />
+                                    <div class="details"><h5>Koruma</h5>Satın alımlarınız ve kişisel verileriniz koruma altındadır.</div>
+                                </div>
+                                <div class="feature">
+                                    <img src="~/UI/assets/images/worldwide.png" alt="Dünya Çapında Teslimat" title="Dünya Çapında Teslimat" />
+                                    <div class="details"><h5>Dünya Çapında Teslimat</h5>200'den fazla ülke ve bölgeye ÜCRETSİZ ve hızlı sevkiyat.</div>
+                                </div>
+                                <div class="feature">
+                                    <img src="~/UI/assets/images/phone-call.png" alt="Destek" title="Destek" />
+                                    <div class="details">
+                                        <h5>Destek</h5>
+                                        Sorunuz için yardım hattıyla konuşun +212 512 2142
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Product Feature-->
+                        <!--Related Product-->
+                        <div class="related-product grid-products">
+                            <header class="section-header">
+                                <h2 class="section-header__title text-center h2"><span>Benzer Ürünler</span></h2>
+                            </header>
+                            <div class="grid">
+                                <div class="grid__item">
+                                    <div class="mini-list-item">
+                                        <div class="mini-view_image">
+                                            <a class="grid-view-item__link" href="#">
+                                                <img class="grid-view-item__image" src="~/Images/kasa5.jpg" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="details">
+                                            <a class="grid-view-item__title" href="#">GAME GARAJ FİGHTER 7T-144 </a>
+                                            <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">10.500,00₺</span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Related Product-->
+                </div>
+            </div>
+            <!--Product Sidebar-->
+        </div>
+        <!--#ProductSection-product-template-->
+    </div>
+    <!--MainContent-->
+</div>
+<!--End Body Content-->
+<!--Scoll Top-->
+<span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
+<!--End Scoll Top-->
+@*<script src="~/UI/assets/js/vendor/jquery.cookie.js"></script>*@
+@*<script src="~/UI/assets/js/vendor/photoswipe.min.js">
+    const { Toast } = require("../../wwwroot/lib/bootstrap/dist/js/bootstrap.esm");
+
+    const { Toast } = require("../../wwwroot/lib/bootstrap/dist/js/bootstrap.esm");
+
+    const { right } = require("@popperjs/core");
+    </script>*@
+
+@section scripts{
+<script src="~/UI/assets/js/vendor/photoswipe.min.js"></script>
+<script src="~/UI/assets/js/vendor/photoswipe-ui-default.min.js"></script>
+<script>
+    $(function(){
+        if(@success){
+            toastr.success("Başarılı","Sepete Eklendi");
+        }
+        else{
+            toastr.error("Hata","Spete Eklenemedi");
+        }
+    });
+</script>
+<script>
+    $(function(){
+        var $pswp = $('.pswp')[0],
+            image = [],
+            getItems = function() {
+                var items = [];
+                $('.lightboximages a').each(function() {
+                    var $href   = $(this).attr('href'),
+                        $size   = $(this).data('size').split('x'),
+                        item = {
+                            src : $href,
+                            w: $size[0],
+                            h: $size[1]
+                        }
+                        items.push(item);
+                });
+                return items;
+            }
+        var items = getItems();
+
+        $.each(items, function(index, value) {
+            image[index]     = new Image();
+            image[index].src = value['src'];
+        });
+        $('.prlightbox').on('click', function (event) {
+            event.preventDefault();
+
+            var $index = $(".active-thumb").parent().attr('data-slick-index');
+            $index++;
+            $index = $index-1;
+
+            var options = {
+                index: $index,
+                bgOpacity: 0.9,
+                showHideOpacity: true
+            }
+            var lightBox = new PhotoSwipe($pswp, PhotoSwipeUI_Default, items, options);
+            lightBox.init();
+        });
+    });
+</script>
+}
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap"><div class="pswp__container"><div class="pswp__item"></div><div class="pswp__item"></div><div class="pswp__item"></div></div><div class="pswp__ui pswp__ui--hidden"><div class="pswp__top-bar"><div class="pswp__counter"></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button><button class="pswp__button pswp__button--share" title="Share"></button><button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button><button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class="pswp__preloader"><div class="pswp__preloader__icn"><div class="pswp__preloader__cut"><div class="pswp__preloader__donut"></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class="pswp__share-tooltip"></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button><button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class="pswp__caption"><div class="pswp__caption__center"></div></div></div></div>
+</div>

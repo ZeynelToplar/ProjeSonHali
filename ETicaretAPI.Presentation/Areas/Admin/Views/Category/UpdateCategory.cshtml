@@ -1,0 +1,40 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<hr />
+<br />
+<br />
+
+<h1>Ürün Güncelleme Sayfası</h1>
+
+<form method="post" asp-action="UpdateCategory" asp-controller="Category" asp-area="admin">
+    <div class="container">
+        <div class="form-group">
+            <input type="hidden" asp-for="CategoryId"/>
+            @if (Model.ParentId == 0)
+            {
+                <hr />
+                <br />
+                <h3>Ana Kategori</h3><br />
+                <hr />
+            }
+            else
+            {
+                <label>Kategori</label>
+                <select asp-for="ParentId" asp-items="@ViewBag.Categories" class="form-control"></select>
+            }
+            <br />
+            <label>Adı</label>
+            <input type="text" asp-for="CategoryName" class="form-control" />
+            <br />
+            <label>Açıklaması</label>
+            <input type="text" asp-for="CategoryDescription" class="form-control" />
+            <br />
+            <input class="btn btn-behance" type="submit" value="Güncelle" />
+        </div>
+    </div>
+</form>
+

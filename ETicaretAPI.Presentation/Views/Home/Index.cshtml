@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Home slider-->
+    	<div class="slideshow slideshow-wrapper pb-section">
+        	<div class="home-slideshow">
+            	<div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload"  src="~/Images/Slider/slider1.png" alt="Wedding bands" title="Wedding bands" />
+                    </div>
+                </div>
+                <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload"  src="~/Images/Slider/slider2.png" alt="Wedding bands" title="Wedding bands" />
+                    </div>
+                </div>
+                 <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload"  src="~/Images/Slider/slider3.png" alt="Wedding bands" title="Wedding bands" />
+                    </div>
+                </div>
+                 <div class="slide">
+                	<div class="blur-up lazyload">
+                        <img class="blur-up lazyload"  src="~/Images/Slider/slider4.png" alt="Wedding bands" title="Wedding bands" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Home slider-->
+        
+        <!--Small Banners-->
+        <div class="section imgBanners">
+            <div class="container">
+            	<div class="imgBnrOuter">
+                	<div class="row">
+                    	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="section-header text-center">
+                                <h2 class="h2 heading-font">Hazır Sistemler</h2>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 pl-0">
+                            <div class="inner btmleft">
+                                <a href="#">
+                                    <img  src="~/Images/kasa4.jpg" alt="" class="blur-up lazyload"/>
+                                    <span class="ttl">Dragos DRx863 Ryzen 5 5600X 8GB Ram 256GB M.2 NVMe SSD 4GB RX550 Masaüstü Oyun Bilgisayarı</span>
+                                </a>
+                            </div>    	
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-6 pr-0">
+                            <div class="inner center" style="bottom:0px;">
+                                <a href="#">
+                                    <img  src="~/Images/kasa3.jpg" alt="" class="blur-up lazyload"/>
+                                    <span class="ttl">Dragos DRx933 Ryzen 5 5600X 16GB Ram 256GB M.2 NVMe SSD 4GB GTX1650 Masaüstü Oyun Bilgisayarı</span>
+                                </a>
+                            </div>  
+                            <div class="inner btmright mt-4">
+                                <a href="#">
+                                    <img  src="~/Images/kasa5.jpg" alt="" class="blur-up lazyload"/>
+                                    <span class="ttl">Origin Bronze [Tekmoloji] | Intel i5 10400F | 2 x 8 GB DDR4 | RTX 3060 12 GB | 480 GB SSD Oyuncu Bilgisayarı</span>
+                                </a>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Small Banners-->
+        
+        <!--Hot picks-->
+        <div class="section">
+        	<div class="container">
+            	<div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="section-header text-center">
+                            <h2 class="h2 heading-font">Süper Fırsatlar</h2>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            	<div class="productSlider-style2 grid-products">
+                    <!-- Dönülecek ürün kısmı-->
+                   @await Component.InvokeAsync("HotDeals")
+                    <!-- Dönülecek ürün kısmı-->
+            	</div>
+            </div>
+       </div>
+       <!--End Hot picks-->
+       
+       @*	<div class="section collection-box-style1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="section-header text-center">
+                            <h2 class="h2">Popüler Kategoriler</h2>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="collection-grid-item">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img  src="~/UI/assets/images/collection/jewellery-collection4.jpg" alt="Hot" class="blur-up lazyload"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="collection-grid-item">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img  src="~/UI/assets/images/collection/jewellery-collection5.jpg" alt="Denim" class="blur-up lazyload"/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-4">
+                        <div class="collection-grid-item">
+                            <a href="collection-page.html" class="collection-grid-item__link">
+                                <img  src="~/UI/assets/images/collection/jewellery-collection6.jpg" alt="Summer" class="blur-up lazyload"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       	</div>*@
+        
+        <!--Store Feature-->
+        <div class="store-feature section">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    	<ul class="display-table store-info">
+                        	<li class="display-table-cell">
+                            	<i class="icon anm anm-truck-l"></i>
+                            	<h5>ÜCRETSİZ KARGO</h5>
+                            	<span class="sub-text">
+                            		200 TL ve üzeri alışverişlerde geçerlidir.
+                            	</span>
+                            </li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-money-bill-ar"></i>
+                                <h5>PARA İADE GARANTİSİ</h5>
+                                <span class="sub-text">
+                                	30 Gün içerisinde beğenmezseniz paranız iade.
+                                </span>
+                          	</li>
+                          	<li class="display-table-cell">
+                            	<i class="icon anm anm-comments-l"></i>
+                                <h5>7/24 DESTEK</h5>
+                                <span class="sub-text">
+                                	Uzman kadromuzla her daim destekteyiz.
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Store Feature-->
+    </div>
+    <!--End Body Content-->

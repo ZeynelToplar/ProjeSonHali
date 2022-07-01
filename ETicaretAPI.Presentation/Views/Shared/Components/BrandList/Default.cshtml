@@ -1,0 +1,7 @@
+﻿@model List<Brand>
+
+@foreach (var item in Model)
+{
+
+    <li class="lvl-2"><a href="~/Product/Shopping/?brandId=@item.CategoryId" class="site-nav lvl-2">@item.BrandName</a></li>
+}

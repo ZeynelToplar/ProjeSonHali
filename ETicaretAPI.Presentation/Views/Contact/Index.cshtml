@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contact-template">
+    <!--Body Content-->
+    <div id="page-content">
+        <!--Page Title-->
+        <div class="page section-header text-center">
+            <div class="page-title">
+                <div class="wrapper"><h1 class="page-width">İletişime Geçin</h1></div>
+            </div>
+        </div>
+        <!--End Page Title-->
+        <div class="map-section map">
+           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d201550.39177182148!2d32.366399971987896!3d37.87842350983018!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d08568d615f745%3A0x240dd0fc08060967!2sKonya!5e0!3m2!1str!2str!4v1649345225131!5m2!1str!2str" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="container">
+                <div class="row">
+                    <div class="map-section__overlay-wrapper">
+                        <div class="map-section__overlay">
+                            <h3 class="h4">Mağazamız</h3>
+                            <div class="rte-setting">
+                                <p>42 Konya-Mevlana<br>Konya , Türkiye</p>
+                            </div>
+                            <p><a href="https://goo.gl/maps/16Xe9RgZyKqBuig89" class="btn btn--secondary btn--small" target="_blank">Konuma git</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="padding-top:50px">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 mb-4">
+                    <h2>Bizimle İletişime Geçin</h2>
+                    <div class="formFeilds contact-form form-vertical">
+                        <form action="#" method="post" id="contact_form" class="contact-form">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="text" id="ContactFormName" name="name" placeholder="Adınız" value="" required="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input type="email" id="ContactFormEmail" name="email" placeholder="Mail" value="" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input required="" type="tel" id="ContactFormPhone" name="phone" pattern="[0-9\-]*" placeholder="Telefon Numaranız" value="">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <input required="" type="text" id="ContactSubject" name="subject" placeholder="Konu" value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                        <textarea required="" rows="10" id="ContactFormMessage" name="message" placeholder="Mesajınız..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <input type="submit" class="btn" value="Mesaj Gönder">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                    <div class="open-hours">
+                        <strong>Çalışma Saatleri</strong><br>
+                        Pazartesi - Cumartesi : 09:00 - 23:00<br>
+                        Pazar: 09:00 - 18:00
+                    </div>
+                    <hr />
+                    <ul class="addressFooter">
+                        <li><i class="icon anm anm-map-marker-al"></i><p>42 KONYA/TÜRKİYE </p></li>
+                        <li class="phone"><i class="icon anm anm-phone-s"></i><p>(+90) 537 774 2430</p></li>
+                        <li class="email"><i class="icon anm anm-envelope-l"></i><p>teamsolid@gmail.com</p></li>
+                    </ul>
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--End Body Content-->
+</div>
+

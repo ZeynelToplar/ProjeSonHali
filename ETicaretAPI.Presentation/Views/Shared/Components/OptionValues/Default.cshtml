@@ -1,0 +1,13 @@
+﻿@model List<OptionValue>
+
+
+
+@foreach (var item in Model)
+{
+
+
+    <li>
+        <input type="checkbox" name="opts" value="@item.Value" id="@item.OptionValueId">
+        <label for="@item.OptionValueId"><span><span></span></span>@item.Value</label>
+    </li>
+}

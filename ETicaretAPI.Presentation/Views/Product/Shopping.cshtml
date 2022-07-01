@@ -1,0 +1,177 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Body Content-->
+<div id="page-content">
+    <!--Collection Banner-->
+    @*<div class="collection-header">
+    <div class="collection-hero">
+    <div class="collection-hero__image"><img class="blur-up lazyload"  src="~/UI/assets/images/cat-women.jpg" alt="Women" title="Women" /></div>
+    <div class="collection-hero__title-wrapper"><h1 class="collection-hero__title page-width">Bul KARAYI AL KASAYI</h1></div>
+    </div>
+    </div>*@
+    <!--End Collection Banner-->
+    <br />
+    <div class="container">
+        <div class="row">
+            <!--Sidebar-->
+            <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+                <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+                <div class="sidebar_tags">
+                    <!--Price Filter-->
+                    <form asp-action="Filter" asp-controller="Product" method="get" asp-route-id="@ViewBag.id">
+                        <div class="sidebar_widget filterBox filter-widget">
+                            <div class="widget-title">
+                                <h2>Fiyat Aralığı</h2>
+                            </div>
+
+                            <input name="minPrice" type="text" placeholder="min">
+                            <input name="maxPrice" type="text" placeholder="max" />
+                        </div>
+                        <!--End Price Filter-->
+                        @await Component.InvokeAsync("CategoryFilter", ViewBag.id)
+                        <br />
+                        <input type="submit" value="Filtrele" class="btn btn-github" />
+                    </form>
+                    <br />
+                    <!--Popular Products-->
+                    <div class="sidebar_widget">
+                        <div class="widget-title"><h2>Popular Products</h2></div>
+                        <div class="widget-content">
+                            <div class="list list-sidebar-products">
+                                <div class="grid">
+                                    <div class="grid__item">
+                                        <div class="mini-list-item">
+                                            <div class="mini-view_image">
+                                                <a class="grid-view-item__link" href="#">
+                                                    <img class="grid-view-item__image" src="~/UI/assets/images/product-images/mini-product-img.jpg" alt="" />
+                                                </a>
+                                            </div>
+                                            <div class="details">
+                                                <a class="grid-view-item__title" href="#">Ürün Adı</a>
+                                                <div class="grid-view-item__meta"><span class="product-price__price"><span class="money">150.00₺</span></span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Popular Products-->
+                    <!--Banner-->
+                    <div class="sidebar_widget static-banner">
+                        <img src="~/UI/assets/images/side-banner-2.jpg" alt="" />
+                    </div>
+                    <!--Banner-->
+                </div>
+            </div>
+            <!--End Sidebar-->
+            <!--Main Content-->
+            <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+                <hr>
+                <div class="productList product-load-more">
+                    <!--Toolbar-->
+                    <button type="button" class="btn btn-filter d-block d-md-none d-lg-none"> Ürün Filtreleme</button>
+                    <div class="toolbar">
+                        <div class="filters-toolbar-wrapper">
+                            <div class="row">
+                                <div class="col-6 col-md-6 col-lg-6 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+                                </div>
+                                <div class="col-6 col-md-6 col-lg-6 text-right">
+                                    <div class="filters-toolbar__item">
+                                        <label for="SortBy" class="hidden">Sırala</label>
+                                        <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
+                                            <option value="title-ascending" selected="selected">Sırala</option>
+                                            <option>Alfabetik, A-Z</option>
+                                            <option>Alfabetik, Z-A</option>
+                                            <option>Fiyat artan</option>
+                                            <option>Fiyat azalan</option>
+                                        </select>
+                                        <input class="collection-header__default-sort" type="hidden" value="manual">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Toolbar-->
+
+                    <div class="grid-products grid--view-items">
+
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-6 col-sm-6 col-md-4 col-lg-3 item" style="height:400px;">
+                                    <!-- start product image -->
+                                    <div class="product-image" style="margin-top:50px !important;">
+                                        <!-- start product image -->
+                                        <a href="~/Product/ProductLayout/@item.ProductId">
+                                            <!-- image -->
+                                        @await Component.InvokeAsync("ImageList",item.ProductId)
+                                            <!-- End hover image -->
+                                            <!-- product label -->
+                                            <div class="product-labels rectangular"><span class="lbl on-sale">-@item.Discount%</span></div>
+                                            <!-- End product label -->
+                                        </a>
+                                        <!-- end product image -->
+                                        <!-- Start product button -->
+                                        @*<form class="variants add" action="#" onclick="window.location.href='cart.html'" method="post">
+                                            <button class="btn btn-addto-cart" type="button">Seçenekler</button>
+                                        </form>*@
+                                        <div class="button-set">
+                                            <div class="wishlist-btn">
+                                                <a class="wishlist add-to-wishlist" href="~/Fav/AddFav/@item.ProductId" title="İstek listeme ekle">
+                                                    <i class="icon anm anm-heart-l"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!-- end product button -->
+                                    </div>
+                                    <!-- end product image -->
+                                    <!--start product details -->
+                                    <div class="product-details text-center" style="position:absolute !important; bottom:0px !important; margin-top:10px !important;">
+                                        <!-- product name -->
+                                        <div class="product-name">
+                                            <a href="#">@item.ProductName</a>
+                                        </div>
+                                        <!-- End product name -->
+                                        <!-- product price -->
+                                        @if (@item.Discount > 0)
+                                        {
+                                            var discountPrice = (item.UnitPrice - (item.UnitPrice * item.Discount / 100));
+                                            <div class="product-price">
+                                                <span class="old-price">@string.Format("{0:C2}",@item.UnitPrice)</span>
+                                                <span class="price">@string.Format("{0:C2}",@discountPrice)</span>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-price">
+                                                <span class="price">@string.Format("{0:C2}",@item.UnitPrice)</span>
+                                            </div>
+                                        }
+                                        <!-- End product price -->
+                                        <!-- End product details -->
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+                <div class="infinitpaginOuter">
+                    <div class="infinitpagin">
+                        <a href="#" class="btn loadMore">Daha Fazla</a>
+                    </div>
+                </div>
+            </div>
+            <!--End Main Content-->
+        </div>
+    </div>
+
+</div>
+<!--End Body Content-->
